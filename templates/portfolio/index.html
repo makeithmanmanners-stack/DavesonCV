@@ -1,0 +1,708 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- 1. CINEMATIC PAGE INTRO LOADER -->
+<div id="loader-screen" class="loader-screen">
+  <div class="loader-content">
+    <div class="loader-logo">DAVESON CARL<span>.</span></div>
+    <div id="loader-status" class="loader-status">01 — INITIALIZING</div>
+    <div class="loader-bar">
+      <div id="loader-bar-fill" class="loader-bar-fill"></div>
+    </div>
+  </div>
+</div>
+
+<!-- FLOATING QUICK HIRE / SCHEDULE MEETING BUTTON -->
+<button id="quick-hire-btn" class="quick-hire-floating-btn" data-cursor="open">
+  <i data-lucide="briefcase" style="width: 16px; height: 16px;"></i> HIRE / CONTACT DAVESON
+</button>
+
+<!-- QUICK HIRE MODAL OVERLAY -->
+<div id="hire-modal" class="modal-overlay">
+  <div class="modal-content-card" style="max-width: 580px;">
+    <button id="hire-modal-close" class="modal-close-btn"><i data-lucide="x"></i></button>
+    <div style="padding: 2.5rem;">
+      <div class="project-tech-badge" style="margin-bottom: 1rem;">DIRECT RECRUITMENT PORTAL</div>
+      <h2 style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.5rem;">SCHEDULE OPPORTUNITY / HIRE</h2>
+      <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
+        Directly send a structured inquiry or job opportunity proposal to Daveson Carl A. Vasquez.
+      </p>
+
+      <form id="quick-hire-form">
+        <div class="form-group">
+          <label class="form-label">YOUR NAME / COMPANY</label>
+          <input type="text" class="form-input" placeholder="e.g. Vance Technology Corp" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">OPPORTUNITY TYPE</label>
+          <select class="form-input" style="background: #030712; color: #FFF;">
+            <option>Full-Time Full-Stack Web Developer</option>
+            <option>Systems Analyst / Process Architect</option>
+            <option>Database Administrator / SQL Engineer</option>
+            <option>Project Consultation / Contract</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">DIRECT EMAIL / PHONE</label>
+          <input type="email" class="form-input" placeholder="recruiter@company.com" required>
+        </div>
+        <a href="mailto:davesonvasquez@gmail.com?subject=Job%20Opportunity%20Proposal" class="btn-primary magnetic-btn" style="width: 100%; justify-content: center;">
+          DISPATCH PROPOSAL TO GMAIL →
+        </a>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- 2. FLOATING NAVIGATION -->
+<nav id="navbar" class="navbar">
+  <div class="navbar-inner">
+    <a href="#hero" class="nav-brand" data-cursor="explore">DAVESON<span>.</span>VASQUEZ</a>
+    
+    <ul class="nav-links">
+      <li><a href="#about" class="nav-link" data-cursor="explore">ABOUT</a></li>
+      <li><a href="#bsis-capabilities" class="nav-link" data-cursor="explore">BSIS ROLES</a></li>
+      <li><a href="#experience" class="nav-link" data-cursor="explore">EXPERIENCE</a></li>
+      <li><a href="#skills" class="nav-link" data-cursor="explore">SKILLS</a></li>
+      <li><a href="#projects" class="nav-link" data-cursor="explore">PROJECTS</a></li>
+      <li><a href="#contact" class="nav-link" data-cursor="explore">CONTACT</a></li>
+    </ul>
+    
+    <button id="sound-toggle" class="sound-toggle-btn" data-cursor="explore">
+      <i data-lucide="volume-x" style="width:12px;height:12px;"></i> SOUND [OFF]
+    </button>
+
+    <div class="status-badge">
+      <div class="status-dot"></div>
+      AVAILABLE FOR OPPORTUNITIES
+    </div>
+
+    <!-- Mobile Hamburger Toggle Button -->
+    <button id="mobile-hamburger-btn" class="mobile-hamburger-btn" aria-label="Toggle Mobile Menu">
+      <i data-lucide="menu" style="width:24px; height:24px;"></i>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE NAVIGATION DRAWER OVERLAY -->
+<div id="mobile-nav-overlay" class="mobile-nav-overlay">
+  <button id="mobile-nav-close" class="modal-close-btn" style="top: 2rem; right: 2rem;"><i data-lucide="x"></i></button>
+  <ul class="mobile-nav-links">
+    <li><a href="#hero" class="mobile-nav-link">HOME</a></li>
+    <li><a href="#about" class="mobile-nav-link">ABOUT</a></li>
+    <li><a href="#bsis-capabilities" class="mobile-nav-link">BSIS ROLES</a></li>
+    <li><a href="#experience" class="mobile-nav-link">EXPERIENCE</a></li>
+    <li><a href="#skills" class="mobile-nav-link">SKILLS</a></li>
+    <li><a href="#projects" class="mobile-nav-link">PROJECTS</a></li>
+    <li><a href="#contact" class="mobile-nav-link">CONTACT</a></li>
+  </ul>
+</div>
+
+<!-- 3. HERO EXPERIENCE WITH THREE.JS 3D WEBGL CYBER CORE -->
+<section id="hero" class="hero-section">
+  <!-- 3D WebGL Canvas Layer -->
+  <div id="three-hero-container"></div>
+
+  <div class="container">
+    <div class="hero-grid">
+      
+      <!-- Left / Center Title & Statement -->
+      <div class="hero-content">
+        <div class="hero-subtitle hero-reveal">FULL-STACK WEB DEVELOPER &amp; SYSTEMS ANALYST</div>
+        
+        <h1 class="hero-name">
+          <span class="hero-name-line">
+            <span class="hero-name-char">D</span><span class="hero-name-char">A</span><span class="hero-name-char">V</span><span class="hero-name-char">E</span><span class="hero-name-char">S</span><span class="hero-name-char">O</span><span class="hero-name-char">N</span>
+          </span>
+          <span class="hero-name-line">
+            <span class="hero-name-char">C</span><span class="hero-name-char">A</span><span class="hero-name-char">R</span><span class="hero-name-char">L</span><span class="hero-name-char">&nbsp;</span><span class="hero-name-char">A</span><span class="hero-name-char">.</span>
+          </span>
+          <span class="hero-name-line">
+            <span class="hero-name-char">V</span><span class="hero-name-char">A</span><span class="hero-name-char">S</span><span class="hero-name-char">Q</span><span class="hero-name-char">U</span><span class="hero-name-char">E</span><span class="hero-name-char">Z</span>
+          </span>
+        </h1>
+
+        <div class="hero-title-badge hero-reveal">
+          PYTHON (DJANGO) <span>/</span> PHP (LARAVEL) <span>/</span> SYSTEMS ARCHITECTURE
+        </div>
+
+        <p class="hero-statement hero-reveal">
+          "Engineering scalable digital systems through full-stack development, systems analysis, database architecture, and intelligent business process integration."
+        </p>
+
+        <div class="hero-actions hero-reveal">
+          <a href="#projects" class="btn-primary magnetic-btn" data-cursor="view">VIEW PROJECTS <i data-lucide="arrow-down-right"></i></a>
+          <a href="{% url 'portfolio:download_resume' %}" class="btn-secondary magnetic-btn" data-cursor="open">DOWNLOAD CV <i data-lucide="download"></i></a>
+          <a href="{% url 'portfolio:web_resume' %}" class="btn-secondary magnetic-btn" data-cursor="open">VIEW CV <i data-lucide="external-link"></i></a>
+        </div>
+      </div>
+
+      <!-- Right Cinematic Living Portrait Composition -->
+      <div class="hero-portrait-wrap hero-reveal">
+        <div class="portrait-frame-cinematic">
+          <div class="portrait-orbit-ring"></div>
+          
+          <div class="portrait-inner-circle">
+            <img src="{% static 'images/daveson_portrait.png' %}?v=9999" alt="Daveson Carl A. Vasquez Portrait" class="portrait-img-living">
+          </div>
+
+          <div class="tech-node-tag tag-top-left">
+            <i data-lucide="cpu" style="width: 14px; height: 14px; display: inline;"></i> PYTHON / DJANGO
+          </div>
+          <div class="tech-node-tag tag-bottom-right">
+            <i data-lucide="database" style="width: 14px; height: 14px; display: inline;"></i> MYSQL ARCHITECTURE
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- KINETIC MARQUEE PARALLAX BANNER -->
+<section class="marquee-section">
+  <div class="marquee-track">
+    <div class="marquee-text">SYSTEMS ANALYSIS <span>✦</span> DJANGO FRAMEWORK <span>✦</span> LARAVEL ARCHITECTURE <span>✦</span> MYSQL DATABASE OPTIMIZATION <span>✦</span> BS INFORMATION SYSTEMS <span>✦</span></div>
+    <div class="marquee-text">SYSTEMS ANALYSIS <span>✦</span> DJANGO FRAMEWORK <span>✦</span> LARAVEL ARCHITECTURE <span>✦</span> MYSQL DATABASE OPTIMIZATION <span>✦</span> BS INFORMATION SYSTEMS <span>✦</span></div>
+  </div>
+</section>
+
+<!-- 4. ABOUT & KINETIC PROFESSIONAL SUMMARY -->
+<section id="about" class="about-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">01 — PROFESSIONAL PROFILE</div>
+      <h2 class="section-title">ENGINEERING SYSTEMS.<br>BUILDING DIGITAL EXPERIENCES.</h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-text-col">
+        <h3 class="about-headline">
+          BRIDGING <span>SYSTEMS ANALYSIS</span> WITH PRODUCTION-READY FULL-STACK CODE.
+        </h3>
+        <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 1.5rem;">
+          Results-driven BS in Information Systems graduate equipped with expertise in systems analysis, business process integration, database architecture, and full-stack web development.
+        </p>
+        <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-secondary);">
+          Proven capability in engineering scalable applications using Python (Django), PHP (Laravel), and JavaScript, with strong background in backend optimization and cross-departmental IT support.
+        </p>
+      </div>
+
+      <div class="about-kinetic-cards">
+        <div class="kinetic-card" data-cursor="explore">
+          <div class="kinetic-card-num">01</div>
+          <div class="kinetic-card-title">SYSTEMS ANALYSIS</div>
+        </div>
+        <div class="kinetic-card" data-cursor="explore">
+          <div class="kinetic-card-num">02</div>
+          <div class="kinetic-card-title">BUSINESS PROCESS INTEGRATION</div>
+        </div>
+        <div class="kinetic-card" data-cursor="explore">
+          <div class="kinetic-card-num">03</div>
+          <div class="kinetic-card-title">DATABASE ARCHITECTURE</div>
+        </div>
+        <div class="kinetic-card" data-cursor="explore">
+          <div class="kinetic-card-num">04</div>
+          <div class="kinetic-card-title">FULL-STACK DEVELOPMENT</div>
+        </div>
+        <div class="kinetic-card" data-cursor="explore">
+          <div class="kinetic-card-num">05</div>
+          <div class="kinetic-card-title">BACKEND OPTIMIZATION</div>
+        </div>
+        <div class="kinetic-card" data-cursor="explore">
+          <div class="kinetic-card-num">06</div>
+          <div class="kinetic-card-title">ENTERPRISE IT SUPPORT</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INTERACTIVE COMMAND LINE TERMINAL SHOWCASE -->
+    <div class="terminal-card" data-cursor="explore">
+      <div class="terminal-header">
+        <div class="terminal-dots">
+          <div class="term-dot term-dot-red"></div>
+          <div class="term-dot term-dot-yellow"></div>
+          <div class="term-dot term-dot-green"></div>
+        </div>
+        <div class="terminal-title">DAVESON ARCHITECTURE CLI v5.0 — INTERACTIVE TERMINAL</div>
+        <div style="font-size: 0.65rem; color: var(--color-cyan-glow);">SYS_STATUS: ONLINE</div>
+      </div>
+
+      <div id="terminal-body" class="terminal-body">
+        <div class="terminal-line">
+          <div style="color: var(--color-cyan-glow); font-weight: bold;">[SYSTEM INITIALIZED] Welcome to Daveson's Interactive Architecture Terminal.</div>
+          <div style="color: var(--text-muted); margin-top: 0.25rem;">Type <span style="color:#00D2FF">help</span> or click quick actions below to inspect profile data, backend architecture, skills, or experience logs.</div>
+        </div>
+      </div>
+
+      <div class="term-quick-pills">
+        <button class="term-quick-btn" data-cmd="whoami">whoami</button>
+        <button class="term-quick-btn" data-cmd="skills">skills</button>
+        <button class="term-quick-btn" data-cmd="projects">projects</button>
+        <button class="term-quick-btn" data-cmd="exp">exp</button>
+        <button class="term-quick-btn" data-cmd="contact">contact</button>
+        <button class="term-quick-btn" data-cmd="clear">clear</button>
+      </div>
+
+      <div class="terminal-input-wrap">
+        <span class="prompt-user">visitor@daveson-vasquez</span>:<span class="prompt-path">~/system</span>$&nbsp;
+        <input type="text" id="terminal-input" class="terminal-input" placeholder="type 'help' or 'skills'..." autocomplete="off">
+      </div>
+    </div>
+
+    <!-- LIVE INTERACTIVE CODE SANDBOX PLAYGROUND COMPONENT -->
+    <div class="code-playground-card">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+        <div>
+          <div style="font-family: var(--font-display); font-size: 0.75rem; font-weight: 800; letter-spacing: 0.25em; color: var(--color-cyan-glow);">INTERACTIVE CODE PLAYGROUND</div>
+          <div style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 900; color: #FFFFFF;">PRODUCTION CODE ARCHITECTURE</div>
+        </div>
+        
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;">
+          <button class="code-tab-btn active" data-snippet="django">DJANGO (PYTHON)</button>
+          <button class="code-tab-btn" data-snippet="laravel">LARAVEL (PHP)</button>
+          <button class="code-tab-btn" data-snippet="mysql">MYSQL INDEX</button>
+          <button class="code-tab-btn" data-snippet="bpmn">BPMN FLOW</button>
+          <button id="copy-code-btn" class="btn-secondary" style="padding: 0.3rem 0.75rem; font-size: 0.7rem;">COPY CODE <i data-lucide="copy" style="width: 12px; height: 12px;"></i></button>
+        </div>
+      </div>
+
+      <pre class="code-pre"><code id="code-display-block"><span style="color:#00D2FF"># portfolio/views.py — High Performance Django ViewSet</span>
+<span style="color:#FFBD2E">class</span> <span style="color:#00D2FF">ProjectViewSet</span>(viewsets.ReadOnlyModelViewSet):
+    queryset = Project.objects.filter(featured=<span style="color:#27C93F">True</span>).select_related(<span style="color:#27C93F">'category'</span>).prefetch_related(<span style="color:#27C93F">'tech_tags'</span>)
+    serializer_class = ProjectSerializer
+
+    <span style="color:#FFBD2E">def</span> <span style="color:#00D2FF">get_queryset</span>(self):
+        <span style="color:#64748B"># Refactored MySQL indexing query reducing latency by 45%</span>
+        <span style="color:#FFBD2E">return</span> self.queryset.extra(select={<span style="color:#27C93F">'opt_rank'</span>: <span style="color:#27C93F">'rank * 10'</span>}).order_by(<span style="color:#27C93F">'rank'</span>)</code></pre>
+    </div>
+
+    <!-- Living Personal Portrait Visual Section -->
+    <div style="margin-top: 5rem;">
+      <div class="portrait-visual-card">
+        <img src="{% static 'images/daveson_portrait.png' %}?v=9999" alt="Living Visual Portrait Composition">
+        <div class="portrait-visual-overlay">
+          <div class="portrait-visual-caption">
+            SYSTEMS ARCHITECT &amp; FULL-STACK DEVELOPER
+          </div>
+          <div style="font-family: var(--font-display); font-size: 0.85rem; color: var(--color-cyan-glow); letter-spacing: 0.15em;">
+            LAS PIÑAS CITY, PHILIPPINES
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 5. BS INFORMATION SYSTEMS (BSIS) CAREER & CAPABILITIES MATRIX -->
+<section id="bsis-capabilities" class="bsis-capabilities-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">02 — BS INFORMATION SYSTEMS DISCIPLINE</div>
+      <h2 class="section-title">BSIS GRADUATE CAPABILITIES &amp; CAREER MATRIX</h2>
+    </div>
+
+    <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); max-width: 800px; margin-bottom: 2rem;">
+      As a <strong>BS in Information Systems (BSIS)</strong> graduate, Daveson stands at the intersection of business strategy and cutting-edge software engineering. A BSIS professional goes beyond writing raw code—designing enterprise workflows, modeling relational data structures, managing software lifecycles, and engineering scalable digital solutions.
+    </p>
+
+    <div class="bsis-matrix-grid">
+      {% for bsis in bsis_capabilities %}
+      <div class="bsis-card" data-cursor="explore">
+        <div>
+          <div class="bsis-card-header">
+            <div class="bsis-num">{{ bsis.num }} / 05</div>
+            <div class="bsis-badge">{{ bsis.badge }}</div>
+          </div>
+          <h3 class="bsis-role-title">{{ bsis.role }}</h3>
+          <p class="bsis-desc">"{{ bsis.description }}"</p>
+        </div>
+
+        <div class="bsis-skills-list">
+          {% for sk in bsis.skills %}
+          <span class="bsis-skill-tag">✓ {{ sk }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<!-- 6. CINEMATIC EXPERIENCE TIMELINE -->
+<section id="experience" class="experience-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">03 — PROFESSIONAL EXPERIENCE</div>
+      <h2 class="section-title">ENGINEERING TIMELINE</h2>
+    </div>
+
+    {% for exp in experiences %}
+    <div class="experience-header-card">
+      <div class="exp-role">{{ exp.role }}</div>
+      <div class="exp-org">{{ exp.organization }}</div>
+      <div class="exp-date">{{ exp.start_date }} — {{ exp.end_date }} | {{ exp.location }}</div>
+    </div>
+
+    <div class="timeline-wrap">
+      <div class="timeline-line">
+        <div id="timeline-line-progress" class="timeline-line-progress"></div>
+      </div>
+
+      {% for resp in exp.responsibilities %}
+      <div class="responsibility-item" data-cursor="explore">
+        <div class="resp-node"></div>
+        <div class="resp-num">{{ resp.num }} / 05</div>
+        <div class="resp-title">{{ resp.title }}</div>
+        <div class="resp-text">"{{ resp.text }}"</div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+
+  </div>
+</section>
+
+<!-- 7. INTERACTIVE TECHNICAL STACK ECOSYSTEM & COMPETENCY RADAR -->
+<section id="skills" class="skills-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">04 — TECHNICAL STACK ECOSYSTEM</div>
+      <h2 class="section-title">INTERACTIVE TECHNOLOGY ECOSYSTEM</h2>
+    </div>
+
+    <!-- Depth Tooltip element -->
+    <div id="skill-tooltip" class="skill-depth-tooltip">
+      <div id="tooltip-title" class="tooltip-title">PYTHON</div>
+      <div id="tooltip-subtitle" class="tooltip-subtitle">Backend Framework</div>
+      <ul id="tooltip-list" class="tooltip-list"></ul>
+    </div>
+
+    <!-- COMPETENCY PROGRESS MATRIX -->
+    <div style="margin-bottom: 3.5rem; padding: 2rem; background: var(--bg-card); border: 1px solid var(--glass-border-glow); border-radius: 24px;">
+      <div style="font-family: var(--font-display); font-size: 0.8rem; font-weight: 800; letter-spacing: 0.3em; color: var(--color-cyan-glow); margin-bottom: 0.5rem;">PROFICIENCY MATRICES</div>
+      <div style="font-family: var(--font-display); font-size: 1.4rem; font-weight: 900; color: #FFFFFF; margin-bottom: 1.5rem;">CORE COMPETENCY RADAR</div>
+
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem 3rem;">
+        <div class="skill-progress-item">
+          <div class="skill-progress-label"><span>SYSTEMS ANALYSIS &amp; BPMN</span><span>98%</span></div>
+          <div class="skill-progress-bar"><div class="skill-progress-fill" style="width: 98%;"></div></div>
+        </div>
+
+        <div class="skill-progress-item">
+          <div class="skill-progress-label"><span>DATABASE ARCHITECTURE (MYSQL)</span><span>95%</span></div>
+          <div class="skill-progress-bar"><div class="skill-progress-fill" style="width: 95%;"></div></div>
+        </div>
+
+        <div class="skill-progress-item">
+          <div class="skill-progress-label"><span>PYTHON / DJANGO WEB FRAMEWORK</span><span>96%</span></div>
+          <div class="skill-progress-bar"><div class="skill-progress-fill" style="width: 96%;"></div></div>
+        </div>
+
+        <div class="skill-progress-item">
+          <div class="skill-progress-label"><span>PHP / LARAVEL FRAMEWORK</span><span>92%</span></div>
+          <div class="skill-progress-bar"><div class="skill-progress-fill" style="width: 92%;"></div></div>
+        </div>
+
+        <div class="skill-progress-item">
+          <div class="skill-progress-label"><span>FULL-STACK FRONTEND (HTML5/CSS3/JS)</span><span>94%</span></div>
+          <div class="skill-progress-bar"><div class="skill-progress-fill" style="width: 94%;"></div></div>
+        </div>
+
+        <div class="skill-progress-item">
+          <div class="skill-progress-label"><span>ENTERPRISE IT SUPPORT (TESDA NC II)</span><span>90%</span></div>
+          <div class="skill-progress-bar"><div class="skill-progress-fill" style="width: 90%;"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skills-container">
+      
+      <!-- Interactive Canvas Graph -->
+      <div>
+        <canvas id="skills-canvas"></canvas>
+      </div>
+
+      <!-- Skills Grid Pills -->
+      <div class="skills-grid">
+        {% for cat in skill_categories %}
+        <div class="skill-category-card">
+          <div class="category-name">{{ cat.name }}</div>
+          <div class="skill-pills">
+            {% for sk in cat.skills.all %}
+            <div class="skill-pill" 
+                 data-skill-name="{{ sk.name }}" 
+                 data-subtitle="{{ sk.subtitle }}" 
+                 data-specs='{{ sk.depth_specs|json_script:"spec_data" }}' 
+                 data-connected="{{ sk.connected_skills }}"
+                 data-cursor="explore">
+              {{ sk.name }}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 8. SELECTED PROJECTS SHOWCASE -->
+<section id="projects" class="projects-pinned-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">05 — FEATURED SYSTEM SHOWCASES</div>
+      <h2 class="section-title">SELECTED PROJECTS</h2>
+    </div>
+
+    {% for project in projects %}
+    <div class="project-showcase-card" id="project-{{ project.id }}" data-cursor="view">
+      <div class="project-grid">
+        
+        <div class="project-info">
+          <div class="project-code">{{ project.project_code }}</div>
+          <h3 class="project-title">{{ project.title }}</h3>
+          <div class="project-tech-badge">{{ project.tech_stack }}</div>
+          <p class="project-desc">"{{ project.description }}"</p>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="{{ project.url }}" target="_blank" rel="noopener noreferrer" class="btn-primary magnetic-btn" data-cursor="open">
+              VIEW PROJECT <i data-lucide="external-link"></i>
+            </a>
+            <button class="btn-secondary inspect-project-btn magnetic-btn" data-project-code="{{ project.project_code }}" data-cursor="explore">
+              INSPECT SYSTEM <i data-lucide="layers"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="project-visual-frame inspect-project-btn" data-project-code="{{ project.project_code }}">
+          <img src="{% static project.image_path %}" alt="{{ project.title }} Preview">
+        </div>
+
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+</section>
+
+<!-- INTERACTIVE PROJECT INSPECTOR MODAL MARKUP -->
+<div id="project-modal" class="modal-overlay">
+  <div class="modal-content-card">
+    <button id="modal-close-btn" class="modal-close-btn"><i data-lucide="x"></i></button>
+    <div style="padding: 2.5rem;">
+      <div id="modal-tech" class="project-tech-badge" style="margin-bottom: 1rem;">TECH STACK</div>
+      <h2 id="modal-title" style="font-family: var(--font-display); font-size: 2rem; font-weight: 900; color: #FFFFFF; margin-bottom: 1rem;">PROJECT TITLE</h2>
+      <p id="modal-desc" style="font-size: 1rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem;">Description</p>
+      
+      <div style="height: 280px; border-radius: 16px; overflow: hidden; border: 1px solid var(--glass-border); margin-bottom: 1.5rem;">
+        <img id="modal-img" src="" alt="Modal Project Preview" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+
+      <!-- LIVE SYSTEM SIMULATOR BOX -->
+      <div style="padding: 1.25rem; background: #060B18; border: 1px solid var(--glass-border-glow); border-radius: 14px; margin-bottom: 1.5rem; font-family: var(--font-mono);">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+          <div style="font-size: 0.75rem; font-weight: 700; color: var(--color-cyan-glow);">SYSTEM QUERY SIMULATOR</div>
+          <button id="run-sim-btn" class="btn-secondary" style="padding: 0.3rem 0.8rem; font-size: 0.7rem;">RUN LIVE QUERY SIMULATOR <i data-lucide="play" style="width: 12px; height: 12px;"></i></button>
+        </div>
+        <div id="modal-sim-output" style="min-height: 50px; font-size: 0.8rem;">
+          <span style="color: var(--text-muted);">Click "RUN LIVE QUERY SIMULATOR" to simulate backend database response.</span>
+        </div>
+      </div>
+
+      <a id="modal-link" href="#" target="_blank" rel="noopener noreferrer" class="btn-primary magnetic-btn">LAUNCH SYSTEM <i data-lucide="external-link"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- 9. EDUCATION & CERTIFICATION -->
+<section id="credentials" class="credentials-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">06 — ACADEMIC &amp; ACCREDITATION</div>
+      <h2 class="section-title">EDUCATION &amp; CERTIFICATION</h2>
+    </div>
+
+    <div class="credentials-grid">
+      
+      <div class="credential-card" data-cursor="explore">
+        <div class="cred-type">BACHELOR OF SCIENCE</div>
+        <div class="cred-institution">NORTHWEST SAMAR STATE UNIVERSITY</div>
+        <div class="cred-degree">BS IN INFORMATION SYSTEMS</div>
+        <div class="cred-date"><i data-lucide="calendar" style="width:14px; height:14px; display:inline;"></i> GRADUATED: MAY 2026</div>
+      </div>
+
+      <div class="credential-card" data-cursor="explore">
+        <div class="cred-type">NATIONAL CERTIFICATION</div>
+        <div class="cred-institution">TESDA CERTIFICATION</div>
+        <div class="cred-degree">NC II — COMPUTER SYSTEMS SERVICING</div>
+        <div class="cred-date"><i data-lucide="check-circle" style="width:14px; height:14px; display:inline;"></i> COMPLETED: 2023</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 10. CORE STRENGTHS -->
+<section id="strengths" class="strengths-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">07 — CORE COMPETENCIES</div>
+      <h2 class="section-title">CORE STRENGTHS</h2>
+    </div>
+
+    <div class="strengths-grid">
+      {% for str in strengths %}
+      <div class="strength-card" data-cursor="explore">
+        <div class="strength-icon">
+          <i data-lucide="shield-check"></i>
+        </div>
+        <div class="strength-title">{{ str.title }}</div>
+        <p class="strength-desc">"{{ str.description }}"</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- 11. INTERACTIVE SYSTEM STATUS DASHBOARD -->
+<section id="status-dashboard" style="padding: 4rem 0;">
+  <div class="container">
+    <div class="status-dashboard">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <div style="font-family: var(--font-display); font-size: 0.8rem; font-weight: 800; letter-spacing: 0.3em; color: var(--color-cyan-glow);">REAL-TIME AUDIT</div>
+          <div style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 900; color: #FFFFFF;">SYSTEM STATUS</div>
+        </div>
+        <div class="status-badge">
+          <div class="status-dot"></div> ALL SYSTEMS OPERATIONAL
+        </div>
+      </div>
+
+      <div class="status-grid">
+        {% for st in system_status %}
+        <div class="status-item">
+          <div class="status-label">{{ st.label }}</div>
+          <div class="status-val"><i data-lucide="activity" style="width: 14px; height: 14px;"></i> {{ st.status }}</div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12. CONTACT SECTION -->
+<section id="contact" class="contact-section">
+  <div class="container">
+    
+    <h2 class="contact-headline">
+      LET'S BUILD<br><span>SOMETHING</span><br>USEFUL.
+    </h2>
+
+    <p style="font-size: 1.15rem; color: var(--text-secondary); max-width: 620px; line-height: 1.7; margin-bottom: 3rem;">
+      "Interested in building scalable systems, intelligent web applications, or solving complex digital problems?"
+    </p>
+
+    <div class="contact-grid">
+      
+      <!-- Contact Info -->
+      <div class="contact-info-list">
+        
+        <a href="mailto:davesonvasquez@gmail.com" class="contact-info-item" data-cursor="open">
+          <div class="contact-icon"><i data-lucide="mail"></i></div>
+          <div>
+            <div style="font-family: var(--font-display); font-size: 0.7rem; font-weight: 700; color: var(--color-cyan-glow);">EMAIL ME</div>
+            <div style="font-weight: 600;">davesonvasquez@gmail.com</div>
+          </div>
+        </a>
+
+        <a href="tel:+639655866772" class="contact-info-item" data-cursor="open">
+          <div class="contact-icon"><i data-lucide="phone"></i></div>
+          <div>
+            <div style="font-family: var(--font-display); font-size: 0.7rem; font-weight: 700; color: var(--color-cyan-glow);">PHONE</div>
+            <div style="font-weight: 600;">+63 965 586 6772</div>
+          </div>
+        </a>
+
+        <a href="http://daveson-vasquez-portfolio.rf.gd" target="_blank" rel="noopener noreferrer" class="contact-info-item" data-cursor="open">
+          <div class="contact-icon"><i data-lucide="globe"></i></div>
+          <div>
+            <div style="font-family: var(--font-display); font-size: 0.7rem; font-weight: 700; color: var(--color-cyan-glow);">PORTFOLIO</div>
+            <div style="font-weight: 600;">daveson-vasquez-portfolio.rf.gd</div>
+          </div>
+        </a>
+
+        <div class="contact-info-item">
+          <div class="contact-icon"><i data-lucide="map-pin"></i></div>
+          <div>
+            <div style="font-family: var(--font-display); font-size: 0.7rem; font-weight: 700; color: var(--color-cyan-glow);">LOCATION</div>
+            <div style="font-weight: 600;">Las Piñas City, Philippines</div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+          <a href="{% url 'portfolio:download_resume' %}" class="btn-primary magnetic-btn" data-cursor="open">
+            DOWNLOAD CV <i data-lucide="download"></i>
+          </a>
+          <a href="{% url 'portfolio:web_resume' %}" class="btn-secondary magnetic-btn" data-cursor="open">
+            VIEW CV <i data-lucide="file-text"></i>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- AJAX Contact Form -->
+      <div class="contact-form-card">
+        <h3 style="font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; color: #FFFFFF; margin-bottom: 1.5rem;">TRANSMIT MESSAGE</h3>
+        
+        <div id="form-status" style="display:none; font-family: var(--font-display); font-size: 0.85rem; margin-bottom: 1rem;"></div>
+
+        <form id="contact-form">
+          {% csrf_token %}
+          <div class="form-group">
+            <label class="form-label">YOUR NAME</label>
+            <input type="text" name="name" class="form-input" placeholder="e.g. Alexander Vance" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">YOUR EMAIL</label>
+            <input type="email" name="email" class="form-input" placeholder="alexander@company.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">SUBJECT</label>
+            <input type="text" name="subject" class="form-input" placeholder="Project / Systems Opportunity">
+          </div>
+          <div class="form-group">
+            <label class="form-label">MESSAGE</label>
+            <textarea name="message" class="form-textarea" placeholder="Describe your system requirements or inquiry..." required></textarea>
+          </div>
+          <button type="submit" class="btn-primary magnetic-btn" style="width: 100%; justify-content: center;" data-cursor="open">
+            EMAIL ME →
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 13. FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">DAVESON CARL<span>.</span> VASQUEZ</div>
+        <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">FULL-STACK WEB DEVELOPER &amp; SYSTEMS ANALYST</div>
+      </div>
+      <div class="footer-copy">
+        &copy; 2026 Daveson Carl A. Vasquez. All Rights Reserved.
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% endblock %}

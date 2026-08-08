@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Daveson Carl A. Vasquez | Full-Stack Web Developer & Systems Analyst{% endblock %}</title>
+  
+  <!-- SEO & Meta Tags -->
+  <meta name="description" content="Portfolio of Daveson Carl A. Vasquez, a BS in Information Systems graduate specializing in full-stack web development, systems analysis, database architecture, and scalable digital systems.">
+  <meta name="keywords" content="Daveson Carl Vasquez, Full-Stack Developer, Systems Analyst, Python, Django, PHP, Laravel, MySQL, Database Architecture, Las Pinas Philippines">
+  <meta name="author" content="Daveson Carl A. Vasquez">
+  <meta name="robots" content="index, follow">
+
+  <!-- OpenGraph Metadata -->
+  <meta property="og:title" content="Daveson Carl A. Vasquez | Full-Stack Web Developer & Systems Analyst">
+  <meta property="og:description" content="Engineering scalable digital systems through full-stack development, systems analysis, database architecture, and intelligent business process integration.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://daveson-vasquez-portfolio.rf.gd">
+  <meta property="og:image" content="{% static 'images/daveson_portrait.png' %}">
+
+  <!-- Favicon & Styling -->
+  <link rel="icon" type="image/png" href="{% static 'images/daveson_portrait.png' %}">
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+  <!-- GSAP & Lucide CDN Icons -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Daveson Carl A. Vasquez",
+    "jobTitle": "Full-Stack Web Developer & Systems Analyst",
+    "alumniOf": "Northwest Samar State University",
+    "email": "davesonvasquez@gmail.com",
+    "telephone": "+639655866772",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Las Piñas City",
+      "addressCountry": "Philippines"
+    },
+    "url": "http://daveson-vasquez-portfolio.rf.gd",
+    "sameAs": [
+      "https://mhcs-alumni.com/",
+      "https://violet-gnat-135298.hostingersite.com/"
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Custom Cursor (Desktop Only) -->
+  <div id="custom-cursor" class="custom-cursor">
+    <span id="custom-cursor-text" class="custom-cursor-text"></span>
+  </div>
+  <div id="custom-cursor-follower" class="custom-cursor-follower"></div>
+
+  <!-- Background Layers -->
+  <canvas id="bg-canvas"></canvas>
+  <div class="noise-overlay"></div>
+  <div class="ambient-glow"></div>
+
+  <!-- Main Content Block -->
+  {% block content %}{% endblock %}
+
+  <!-- Custom JavaScript Engine Modules -->
+  <script src="{% static 'js/cursor.js' %}"></script>
+  <script src="{% static 'js/background.js' %}"></script>
+  <script src="{% static 'js/skills_graph.js' %}"></script>
+  <script src="{% static 'js/audio_engine.js' %}"></script>
+  <script src="{% static 'js/terminal.js' %}"></script>
+  <script src="{% static 'js/tilt.js' %}"></script>
+  <script src="{% static 'js/modal.js' %}"></script>
+  <script src="{% static 'js/three_hero.js' %}"></script>
+  <script src="{% static 'js/particle_burst.js' %}"></script>
+  <script src="{% static 'js/code_sandbox.js' %}"></script>
+  <script src="{% static 'js/cinematic_motion.js' %}"></script>
+  
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>

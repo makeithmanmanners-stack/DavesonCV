@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Curriculum Vitae | Daveson Carl A. Vasquez{% endblock %}
+
+{% block content %}
+
+<nav class="navbar" style="position: relative; top: 2rem; transform: none; margin-bottom: 4rem;">
+  <div class="navbar-inner">
+    <a href="{% url 'portfolio:home' %}" class="nav-brand">← BACK TO PORTFOLIO</a>
+    <a href="{% url 'portfolio:download_resume' %}" class="btn-primary magnetic-btn" style="padding: 0.5rem 1.25rem; font-size: 0.75rem;">
+      DOWNLOAD PDF <i data-lucide="download" style="width: 14px; height: 14px;"></i>
+    </a>
+  </div>
+</nav>
+
+<div class="container" style="max-width: 900px; padding-bottom: 6rem;">
+  <div style="padding: 3.5rem; background: var(--bg-card); border: 1px solid var(--glass-border-glow); border-radius: 32px; backdrop-filter: blur(20px); box-shadow: 0 40px 80px rgba(0, 0, 0, 0.7);">
+    
+    <!-- Resume Header -->
+    <div style="border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 2rem; margin-bottom: 2.5rem;">
+      <h1 style="font-family: var(--font-display); font-size: 2.5rem; font-weight: 900; color: #FFFFFF; letter-spacing: -0.01em;">DAVESON CARL A. VASQUEZ</h1>
+      <div style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--color-cyan-glow); margin-top: 0.25rem;">FULL-STACK WEB DEVELOPER &amp; SYSTEMS ANALYST</div>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1.25rem; font-size: 0.9rem; color: var(--text-secondary);">
+        <div><i data-lucide="map-pin" style="width: 14px; height: 14px; display: inline;"></i> Las Piñas City, Philippines</div>
+        <div><i data-lucide="phone" style="width: 14px; height: 14px; display: inline;"></i> +63 965 586 6772</div>
+        <div><i data-lucide="mail" style="width: 14px; height: 14px; display: inline;"></i> davesonvasquez@gmail.com</div>
+        <div><i data-lucide="globe" style="width: 14px; height: 14px; display: inline;"></i> daveson-vasquez-portfolio.rf.gd</div>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div style="margin-bottom: 2.5rem;">
+      <div style="font-family: var(--font-display); font-size: 0.8rem; font-weight: 800; letter-spacing: 0.25em; color: var(--color-cyan-glow); text-transform: uppercase; margin-bottom: 0.75rem;">PROFESSIONAL SUMMARY</div>
+      <p style="font-size: 1rem; line-height: 1.7; color: var(--text-secondary);">
+        Results-driven BS in Information Systems graduate equipped with expertise in systems analysis, business process integration, database architecture, and full-stack web development. Proven capability in engineering scalable applications using Python (Django), PHP (Laravel), and JavaScript, with strong background in backend optimization and cross-departmental IT support.
+      </p>
+    </div>
+
+    <!-- Professional Experience -->
+    <div style="margin-bottom: 2.5rem;">
+      <div style="font-family: var(--font-display); font-size: 0.8rem; font-weight: 800; letter-spacing: 0.25em; color: var(--color-cyan-glow); text-transform: uppercase; margin-bottom: 1.25rem;">WORK EXPERIENCE</div>
+      
+      {% for exp in experiences %}
+      <div style="margin-bottom: 1.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+          <h3 style="font-family: var(--font-display); font-size: 1.2rem; font-weight: 800; color: #FFFFFF;">{{ exp.role }}</h3>
+          <span style="font-family: var(--font-display); font-size: 0.85rem; font-weight: 600; color: var(--color-cyan-glow);">{{ exp.start_date }} — {{ exp.end_date }}</span>
+        </div>
+        <div style="font-size: 0.95rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 0.75rem;">{{ exp.organization }} | {{ exp.location }}</div>
+        
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem;">
+          {% for r in exp.responsibilities %}
+          <li style="font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary); padding-left: 1.25rem; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--color-blue-electric);">▸</span>
+            <strong style="color: #FFFFFF;">{{ r.title }}:</strong> "{{ r.text }}"
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Education & Certification -->
+    <div style="margin-bottom: 2.5rem;">
+      <div style="font-family: var(--font-display); font-size: 0.8rem; font-weight: 800; letter-spacing: 0.25em; color: var(--color-cyan-glow); text-transform: uppercase; margin-bottom: 1rem;">EDUCATION &amp; CERTIFICATION</div>
+      
+      <div style="margin-bottom: 1rem;">
+        <div style="font-size: 1.05rem; font-weight: 800; color: #FFFFFF;">BS IN INFORMATION SYSTEMS</div>
+        <div style="font-size: 0.9rem; color: var(--text-secondary);">Northwest Samar State University | Graduated: May 2026</div>
+      </div>
+
+      <div>
+        <div style="font-size: 1.05rem; font-weight: 800; color: #FFFFFF;">TESDA CERTIFICATION — NC II COMPUTER SYSTEMS SERVICING</div>
+        <div style="font-size: 0.9rem; color: var(--text-secondary);">Completed: 2023</div>
+      </div>
+    </div>
+
+    <!-- Technical Stack -->
+    <div style="margin-bottom: 2.5rem;">
+      <div style="font-family: var(--font-display); font-size: 0.8rem; font-weight: 800; letter-spacing: 0.25em; color: var(--color-cyan-glow); text-transform: uppercase; margin-bottom: 1rem;">TECHNICAL STACK</div>
+      
+      <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+        {% for cat in skill_categories %}
+        <div style="font-size: 0.95rem; color: var(--text-secondary);">
+          <strong style="color: #FFFFFF;">{{ cat.name }}:</strong> 
+          {% for sk in cat.skills.all %}{{ sk.name }}{% if not forloop.last %}, {% endif %}{% endfor %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Selected Projects -->
+    <div>
+      <div style="font-family: var(--font-display); font-size: 0.8rem; font-weight: 800; letter-spacing: 0.25em; color: var(--color-cyan-glow); text-transform: uppercase; margin-bottom: 1rem;">SELECTED PROJECTS</div>
+      
+      {% for proj in projects %}
+      <div style="margin-bottom: 1.25rem;">
+        <div style="font-size: 1.05rem; font-weight: 800; color: #FFFFFF;">{{ proj.project_code }}: {{ proj.title }} ({{ proj.tech_stack }})</div>
+        <div style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 0.25rem;">"{{ proj.description }}"</div>
+        <a href="{{ proj.url }}" target="_blank" rel="noopener noreferrer" style="font-size: 0.85rem; color: var(--color-cyan-glow); text-decoration: none;">{{ proj.url }} →</a>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

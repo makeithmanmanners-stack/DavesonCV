@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: daveson-cv-portfolio
+    env: python
+    region: singapore
+    plan: free
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn portfolio_project.wsgi:application"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.0
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
+      - key: NOTIFICATION_EMAIL
+        value: davesonvasquez@gmail.com
