@@ -486,6 +486,76 @@
 
       </div>
     </div>
+    {% empty %}
+    <!-- FALLBACK STATIC PROJECT CARDS FOR 100% RELIABILITY -->
+    <div class="project-showcase-card" id="project-fallback-1" data-cursor="view">
+      <div class="project-grid">
+        <div class="project-info">
+          <div class="project-code">PROJECT 01</div>
+          <h3 class="project-title">MHCS ALUMNI PLATFORM</h3>
+          <div class="project-tech-badge">Django / MySQL / Relational Database</div>
+          <p class="project-desc">"Full-stack institutional alumni tracking system with automated data verification, relational database schema optimization, and executive reporting dashboards."</p>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="https://mhcs-alumni.com/" target="_blank" rel="noopener noreferrer" class="btn-primary magnetic-btn" data-cursor="open">
+              VIEW PROJECT <i data-lucide="external-link"></i>
+            </a>
+            <button class="btn-secondary inspect-project-btn magnetic-btn" data-project-code="PROJECT 01" data-cursor="explore">
+              INSPECT SYSTEM <i data-lucide="layers"></i>
+            </button>
+          </div>
+        </div>
+        <div class="project-visual-frame inspect-project-btn" data-project-code="PROJECT 01">
+          <img src="{% static 'images/project_mhcs.png' %}" alt="MHCS Alumni Platform Preview">
+        </div>
+      </div>
+    </div>
+
+    <div class="project-showcase-card" id="project-fallback-2" data-cursor="view">
+      <div class="project-grid">
+        <div class="project-info">
+          <div class="project-code">PROJECT 02</div>
+          <h3 class="project-title">WEB-BASED MANAGEMENT SYSTEM</h3>
+          <div class="project-tech-badge">PHP / Laravel / JavaScript / Role-Based ACL</div>
+          <p class="project-desc">"Responsive business process management suite featuring automated workflow routing, role-based authorization levels, audit logging, and query performance refactoring."</p>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="https://violet-gnat-135298.hostingersite.com/" target="_blank" rel="noopener noreferrer" class="btn-primary magnetic-btn" data-cursor="open">
+              VIEW PROJECT <i data-lucide="external-link"></i>
+            </a>
+            <button class="btn-secondary inspect-project-btn magnetic-btn" data-project-code="PROJECT 02" data-cursor="explore">
+              INSPECT SYSTEM <i data-lucide="layers"></i>
+            </button>
+          </div>
+        </div>
+        <div class="project-visual-frame inspect-project-btn" data-project-code="PROJECT 02">
+          <img src="{% static 'images/project_mgmt.png' %}" alt="Web-Based Management System Preview">
+        </div>
+      </div>
+    </div>
+
+    <div class="project-showcase-card" id="project-fallback-3" data-cursor="view">
+      <div class="project-grid">
+        <div class="project-info">
+          <div class="project-code">PROJECT 03</div>
+          <h3 class="project-title">DEVELOPER PORTFOLIO</h3>
+          <div class="project-tech-badge">HTML5 / CSS3 / JavaScript / GSAP Motion</div>
+          <p class="project-desc">"High-performance digital experience highlighting technical systems analysis, full-stack web applications, and live systems architecture."</p>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="http://daveson-vasquez-portfolio.rf.gd" target="_blank" rel="noopener noreferrer" class="btn-primary magnetic-btn" data-cursor="open">
+              VIEW PROJECT <i data-lucide="external-link"></i>
+            </a>
+            <button class="btn-secondary inspect-project-btn magnetic-btn" data-project-code="PROJECT 03" data-cursor="explore">
+              INSPECT SYSTEM <i data-lucide="layers"></i>
+            </button>
+          </div>
+        </div>
+        <div class="project-visual-frame inspect-project-btn" data-project-code="PROJECT 03">
+          <img src="{% static 'images/project_portfolio.png' %}" alt="Developer Portfolio Preview">
+        </div>
+      </div>
+    </div>
     {% endfor %}
 
   </div>
