@@ -13,6 +13,15 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        
+        # Auto-seed database if empty
+        if Project.objects.count() == 0:
+            try:
+                from django.core.management import call_command
+                call_command('seed_data')
+            except Exception as e:
+                pass
+
         context['projects'] = Project.objects.filter(featured=True).order_by('rank')
         context['experiences'] = Experience.objects.all().order_by('order')
         context['skill_categories'] = SkillCategory.objects.prefetch_related('skills').all().order_by('order')
